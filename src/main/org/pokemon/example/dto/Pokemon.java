@@ -3,8 +3,8 @@ package org.pokemon.example.dto;
 public class Pokemon {
     private final int id;
     private final String name;
-    private final PokemonType firstType;
-    private final PokemonType secondType;
+    private final String firstType;
+    private final String secondType;
     private final int total;
     private final int hp;
     private final int attack;
@@ -13,12 +13,12 @@ public class Pokemon {
     private final int spDefense;
     private final int speed;
     private final int generation;
-    private final boolean legendary;
+    private final boolean isLegendary;
 
     public Pokemon(int id,
                    String name,
-                   PokemonType firstType,
-                   PokemonType secondType,
+                   String firstType,
+                   String secondType,
                    int total,
                    int hp,
                    int attack,
@@ -27,7 +27,7 @@ public class Pokemon {
                    int spDefense,
                    int speed,
                    int generation,
-                   boolean legendary) {
+                   boolean isLegendary) {
         this.id = id;
         this.name = name;
         this.firstType = firstType;
@@ -40,7 +40,7 @@ public class Pokemon {
         this.spDefense = spDefense;
         this.speed = speed;
         this.generation = generation;
-        this.legendary = legendary;
+        this.isLegendary = isLegendary;
     }
 
     public int getId() {
@@ -51,11 +51,11 @@ public class Pokemon {
         return name;
     }
 
-    public PokemonType getFirstType() {
+    public String getFirstType() {
         return firstType;
     }
 
-    public PokemonType getSecondType() {
+    public String getSecondType() {
         return secondType;
     }
 
@@ -92,7 +92,7 @@ public class Pokemon {
     }
 
     public boolean isLegendary() {
-        return legendary;
+        return isLegendary;
     }
 
     @Override
@@ -110,7 +110,7 @@ public class Pokemon {
                 ", spDefense=" + spDefense +
                 ", speed=" + speed +
                 ", generation=" + generation +
-                ", legendary=" + legendary +
+                ", legendary=" + isLegendary +
                 '}';
     }
 }
