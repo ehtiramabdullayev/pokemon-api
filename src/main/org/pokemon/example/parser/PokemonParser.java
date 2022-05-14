@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public class PokemonParser {
 
-    Optional<Pokemon> parsePokemonData(String line) {
+    public Optional<Pokemon> parsePokemonData(String line) {
         try {
             Pokemon pokemon = validatePokemon(line);
             return Optional.of(pokemon);
