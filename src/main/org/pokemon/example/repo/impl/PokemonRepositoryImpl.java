@@ -18,17 +18,8 @@ public class PokemonRepositoryImpl implements PokemonRepo {
 
     @Override
     public boolean savePokemon(String id, PokemonEntity entity) {
-        validatePokemon(id);
         pokemons.put(id, entity);
         return true;
-    }
-
-    //TODO fix error handling
-    private void validatePokemon(String id) {
-        if (pokemons.containsKey(id)) {
-            //TODO fix error handling
-            throw new IllegalArgumentException("Pokemon with given ID already exists!");
-        }
     }
 
     @Override

@@ -1,7 +1,6 @@
-package org.pokemon.example.dto;
+package org.pokemon.example.model;
 
-public class Pokemon {
-    private final int id;
+public class PokemonEntity {
     private final String name;
     private final String firstType;
     private final String secondType;
@@ -15,20 +14,7 @@ public class Pokemon {
     private final double generation;
     private final boolean isLegendary;
 
-    public Pokemon(int id,
-                   String name,
-                   String firstType,
-                   String secondType,
-                   int total,
-                   int hp,
-                   double attack,
-                   double defense,
-                   double spAttack,
-                   double spDefense,
-                   double speed,
-                   double generation,
-                   boolean isLegendary) {
-        this.id = id;
+    public PokemonEntity(String name, String firstType, String secondType, int total, int hp, double attack, double defense, double spAttack, double spDefense, double speed, double generation, boolean isLegendary) {
         this.name = name;
         this.firstType = firstType;
         this.secondType = secondType;
@@ -41,10 +27,6 @@ public class Pokemon {
         this.speed = speed;
         this.generation = generation;
         this.isLegendary = isLegendary;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getName() {
@@ -97,11 +79,10 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return "Pokemon{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", firstType=" + firstType +
-                ", secondType=" + secondType +
+        return "PokemonEntity{" +
+                "name='" + name + '\'' +
+                ", firstType='" + firstType + '\'' +
+                ", secondType='" + secondType + '\'' +
                 ", total=" + total +
                 ", hp=" + hp +
                 ", attack=" + attack +
@@ -110,7 +91,17 @@ public class Pokemon {
                 ", spDefense=" + spDefense +
                 ", speed=" + speed +
                 ", generation=" + generation +
-                ", legendary=" + isLegendary +
+                ", isLegendary=" + isLegendary +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }
