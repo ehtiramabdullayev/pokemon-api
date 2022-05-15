@@ -27,7 +27,6 @@ class PokemonOperationsControllerTest {
     public void testTheListPokemonsSucess() throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:7777/pokemon"))
                 .header("Content-Type", "application/json").build();
-
         HttpResponse<String> response = HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
         GenericResponse genericResponse = jsonParsingService.fromJSonToPOJO(response.body(), GenericResponse.class);
         Assertions.assertEquals("SUCCESS", genericResponse.getResponse().getMessage());

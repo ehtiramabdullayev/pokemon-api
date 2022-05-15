@@ -8,8 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PokemonRepoTest {
-
-
     @Test
     public void test_whenTryToSaveTokenSuccess() {
         PokemonRepo authRepository = new PokemonRepositoryImpl();
@@ -25,6 +23,5 @@ class PokemonRepoTest {
         assertTrue(authRepository.savePokemon("1", entity));
         assertTrue(authRepository.savePokemon("2", entity2));
         assertEquals(2, authRepository.getAllPokemonList().size());
-
     }
 }

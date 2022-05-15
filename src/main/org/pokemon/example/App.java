@@ -7,6 +7,7 @@ import org.pokemon.example.parser.PokemonParser;
 import org.pokemon.example.repo.PokemonRepo;
 import org.pokemon.example.repo.impl.PokemonRepositoryImpl;
 import org.pokemon.example.service.BatchProcessingService;
+import org.pokemon.example.service.impl.JsonParsingServiceImpl;
 import org.pokemon.example.service.impl.PokemonServiceImpl;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class App {
 
     public static void initRoutes(PokemonRepo pokemonRepo) {
         PokemonServiceImpl pokemonService = new PokemonServiceImpl(pokemonRepo);
-        PokemonOperationsController controller = new PokemonOperationsControllerImpl(pokemonService);
+        PokemonOperationsController controller = new PokemonOperationsControllerImpl(pokemonService, new JsonParsingServiceImpl());
         get("/hello", (req, res) -> "Hello Axual");
         get("/pokemon", controller::getPokemonList);
     }

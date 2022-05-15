@@ -13,7 +13,6 @@ public class PokemonRepositoryImpl implements PokemonRepo {
 
     public PokemonRepositoryImpl() {
         this.pokemons = new ConcurrentHashMap<>();
-
     }
 
     @Override

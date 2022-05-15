@@ -42,7 +42,6 @@ public class BatchProcessingService {
         if (!pokemon.isLegendary()) {
             if (pokemon.getFirstType().equalsIgnoreCase("STEEL")) {
                 processedPokemon = returnSteelCase(pokemon);
-
             } else if (pokemon.getFirstType().equalsIgnoreCase("Fire")) {
                 processedPokemon = returnFireCase(pokemon);
             } else if (pokemon.getFirstType().equalsIgnoreCase("Bug") && pokemon.getSecondType().equalsIgnoreCase("Flying")) {
