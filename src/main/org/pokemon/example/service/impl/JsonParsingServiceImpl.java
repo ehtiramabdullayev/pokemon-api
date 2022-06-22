@@ -2,7 +2,9 @@ package org.pokemon.example.service.impl;
 
 import com.google.gson.Gson;
 import org.pokemon.example.service.JsonParsingService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class JsonParsingServiceImpl implements JsonParsingService {
     @Override
     public <T> T fromJSonToPOJO(String json, Class<T> classType) {

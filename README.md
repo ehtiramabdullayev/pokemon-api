@@ -100,7 +100,7 @@ http://localhost:7777/pokemon
 
 Example Response
 
-````
+````java
 {
      "body": [
         {

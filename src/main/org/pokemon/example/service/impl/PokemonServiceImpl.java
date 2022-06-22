@@ -4,10 +4,12 @@ import org.pokemon.example.api.model.response.GenericResponse;
 import org.pokemon.example.model.PokemonEntity;
 import org.pokemon.example.repo.PokemonRepo;
 import org.pokemon.example.service.PokemonService;
+import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
 
+@Service
 public class PokemonServiceImpl implements PokemonService {
     private final PokemonRepo pokemonRepo;
 
