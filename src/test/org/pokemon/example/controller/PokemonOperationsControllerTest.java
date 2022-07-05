@@ -6,7 +6,7 @@
 //import org.pokemon.example.App;
 //import org.pokemon.example.api.model.response.GenericResponse;
 //import org.pokemon.example.service.JsonParsingService;
-//import org.pokemon.example.service.impl.JsonParsingServiceImpl;
+//import org.pokemon.example.service.JsonParsingServiceImpl;
 //
 //import java.io.IOException;
 //import java.net.URI;

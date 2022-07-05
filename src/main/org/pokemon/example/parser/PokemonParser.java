@@ -1,21 +1,21 @@
 package org.pokemon.example.parser;
 
 import org.pokemon.example.dto.Pokemon;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PokemonParser {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public Pokemon parsePokemonData(String line) {
         try {
-            Pokemon pokemon = validatePokemon(line);
-            return pokemon;
+            return validatePokemon(line);
         } catch (Exception e) {
-            System.out.println("Detected invalid line, skipping..." + line);
-            System.out.println(e.getMessage());
-            System.out.println();
+            logger.error("parseLine - failed to parse line", e);
+            return null;
         }
-        return null;
     }
 
     private Pokemon validatePokemon(String line) throws IllegalArgumentException {
@@ -38,6 +38,7 @@ public class PokemonParser {
         boolean isLegendary = Boolean.parseBoolean(pokemonRecord[12]);
 
         if (id == 0 || name.isEmpty()) {
+            logger.error("Illegal value- failed to validate value");
             throw new IllegalArgumentException("Illegal value passed to one or more parameters");
         }
 

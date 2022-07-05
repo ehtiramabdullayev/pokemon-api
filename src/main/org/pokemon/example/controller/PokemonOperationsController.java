@@ -2,10 +2,9 @@ package org.pokemon.example.controller;
 
 import org.pokemon.example.api.model.response.GenericResponse;
 import org.pokemon.example.model.PokemonEntity;
-import org.pokemon.example.service.BatchProcessingService;
-import org.pokemon.example.service.JsonParsingService;
+import org.pokemon.example.service.PokemonProcessingService;
+import org.pokemon.example.service.PokemonReaderService;
 import org.pokemon.example.service.PokemonService;
-import org.pokemon.example.service.impl.PokemonServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +21,16 @@ public class PokemonOperationsController {
     Logger logger = LoggerFactory.getLogger(PokemonOperationsController.class);
 
     private final PokemonService pokemonService;
-    private final JsonParsingService jsonParsingService;
-    private final BatchProcessingService processingService;
+    private final PokemonReaderService processingService;
+    private final PokemonProcessingService pokemonProcessingService;
 
     @Autowired
-    public PokemonOperationsController(PokemonServiceImpl pokemonService,
-                                       JsonParsingService jsonParsingService,
-                                       BatchProcessingService processingService) {
+    public PokemonOperationsController(PokemonService pokemonService,
+                                       PokemonReaderService processingService,
+                                       PokemonProcessingService pokemonProcessingService) {
         this.pokemonService = pokemonService;
-        this.jsonParsingService = jsonParsingService;
         this.processingService = processingService;
+        this.pokemonProcessingService = pokemonProcessingService;
     }
 
     @PostConstruct
@@ -39,13 +38,13 @@ public class PokemonOperationsController {
         logger.info("init - Started.");
 
         processingService.pokemons()
-                .forEach( processingService::processPokemon );
+                .forEach(pokemonProcessingService::processPokemon);
 
         logger.info("init - Done.");
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public GenericResponse<List<PokemonEntity>>  getPokemonList() {
+    public GenericResponse<List<PokemonEntity>> getPokemonList() {
         return pokemonService.pokemonList();
     }
 }

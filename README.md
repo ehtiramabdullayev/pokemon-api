@@ -84,12 +84,12 @@ Run the project
 
 Example Request
 ```
-http://localhost:7777/pokemon
+http://localhost:8080/pokemon
 ```
 
 Example Response
 
-````java
+````json
 {
      "body": [
         {
@@ -125,4 +125,5 @@ Example Response
         "status": 200,
         "message": "SUCCESS"
     }
+}
 ````
