@@ -45,17 +45,6 @@ All the best and happy coding,
 The Axual Team
 
 # Solution
-Simple solution with Spark
-
-I decided to keep it simple by not using the Spring here since we don't need to use all the libraries and dependencies comes with it, and i saw in the job description that you already use spark so i continued with it.
-
-I can say i tried to finish it as soon as possible so there are a couple of things could be improved:
-
-1. The exception handling isn't ideal but i had limited time, the literals needs to be in a seperate file as constants)
-2. I could use different approach and use threads as my producer would publish the parsed data and my consumer would listen to it and write it to the database
-3. Test coverage - i added some tests but also i could improve test coverage but my time went to find how to add filtering with spark
-4. Logging - also it is very important part of the application but i didn't start it because of the time frame
-5. the filtering endpoint is missing
 
 ## Setup guide
 
