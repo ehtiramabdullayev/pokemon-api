@@ -21,15 +21,15 @@ public class PokemonOperationsController {
     Logger logger = LoggerFactory.getLogger(PokemonOperationsController.class);
 
     private final PokemonService pokemonService;
-    private final PokemonReaderService processingService;
+    private final PokemonReaderService pokemonReaderService;
     private final PokemonProcessingService pokemonProcessingService;
 
     @Autowired
     public PokemonOperationsController(PokemonService pokemonService,
-                                       PokemonReaderService processingService,
+                                       PokemonReaderService pokemonReaderService,
                                        PokemonProcessingService pokemonProcessingService) {
         this.pokemonService = pokemonService;
-        this.processingService = processingService;
+        this.pokemonReaderService = pokemonReaderService;
         this.pokemonProcessingService = pokemonProcessingService;
     }
 
@@ -37,7 +37,7 @@ public class PokemonOperationsController {
     public void init() {
         logger.info("init - Started.");
 
-        processingService.pokemons()
+        pokemonReaderService.pokemons()
                 .forEach(pokemonProcessingService::processPokemon);
 
         logger.info("init - Done.");
