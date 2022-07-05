@@ -1,21 +1,21 @@
 package org.pokemon.example.parser;
 
 import org.pokemon.example.dto.Pokemon;
+import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
+@Service
 public class PokemonParser {
 
-    public Optional<Pokemon> parsePokemonData(String line) {
+    public Pokemon parsePokemonData(String line) {
         try {
             Pokemon pokemon = validatePokemon(line);
-            return Optional.of(pokemon);
+            return pokemon;
         } catch (Exception e) {
             System.out.println("Detected invalid line, skipping..." + line);
             System.out.println(e.getMessage());
             System.out.println();
         }
-        return Optional.empty();
+        return null;
     }
 
     private Pokemon validatePokemon(String line) throws IllegalArgumentException {
