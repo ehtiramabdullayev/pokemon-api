@@ -1,26 +1,28 @@
 package org.pokemon.example.dto;
 
+import java.util.Objects;
+
 public class Pokemon {
-    private final int id;
-    private final String name;
-    private final String firstType;
-    private final String secondType;
-    private final int total;
-    private final int hp;
-    private final double attack;
-    private final double defense;
-    private final double spAttack;
-    private final double spDefense;
-    private final double speed;
-    private final double generation;
-    private final boolean isLegendary;
+    private int id;
+    private String name;
+    private String firstType;
+    private String secondType;
+    private  int total;
+    private  double hp;
+    private double attack;
+    private double defense;
+    private double spAttack;
+    private double spDefense;
+    private double speed;
+    private double generation;
+    private boolean isLegendary;
 
     public Pokemon(int id,
                    String name,
                    String firstType,
                    String secondType,
                    int total,
-                   int hp,
+                   double hp,
                    double attack,
                    double defense,
                    double spAttack,
@@ -47,52 +49,104 @@ public class Pokemon {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getFirstType() {
         return firstType;
     }
 
+    public void setFirstType(String firstType) {
+        this.firstType = firstType;
+    }
+
     public String getSecondType() {
         return secondType;
+    }
+
+    public void setSecondType(String secondType) {
+        this.secondType = secondType;
     }
 
     public int getTotal() {
         return total;
     }
 
-    public int getHp() {
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public double getHp() {
         return hp;
+    }
+
+    public void setHp(double hp) {
+        this.hp = hp;
     }
 
     public double getAttack() {
         return attack;
     }
 
+    public void setAttack(double attack) {
+        this.attack = attack;
+    }
+
     public double getDefense() {
         return defense;
+    }
+
+    public void setDefense(double defense) {
+        this.defense = defense;
     }
 
     public double getSpAttack() {
         return spAttack;
     }
 
+    public void setSpAttack(double spAttack) {
+        this.spAttack = spAttack;
+    }
+
     public double getSpDefense() {
         return spDefense;
+    }
+
+    public void setSpDefense(double spDefense) {
+        this.spDefense = spDefense;
     }
 
     public double getSpeed() {
         return speed;
     }
 
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
     public double getGeneration() {
         return generation;
     }
 
+    public void setGeneration(double generation) {
+        this.generation = generation;
+    }
+
     public boolean isLegendary() {
         return isLegendary;
+    }
+
+    public void setLegendary(boolean legendary) {
+        isLegendary = legendary;
     }
 
     @Override
@@ -112,5 +166,10 @@ public class Pokemon {
                 ", generation=" + generation +
                 ", legendary=" + isLegendary +
                 '}';
+    }
+
+    public boolean isTypeOf(String type) {
+        return Objects.equals(this.getFirstType(), type)
+                || Objects.equals(this.getSecondType(), type);
     }
 }

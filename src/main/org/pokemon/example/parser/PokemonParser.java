@@ -13,7 +13,7 @@ public class PokemonParser {
         try {
             return validatePokemon(line);
         } catch (Exception e) {
-            logger.error("parseLine - failed to parse line", e);
+            logger.error("parseLine - failed to parse line {}", e.getMessage());
             return null;
         }
     }
@@ -40,6 +40,9 @@ public class PokemonParser {
         if (id == 0 || name.isEmpty()) {
             logger.error("Illegal value- failed to validate value");
             throw new IllegalArgumentException("Illegal value passed to one or more parameters");
+        }
+        if (isLegendary || typeOne.equalsIgnoreCase("Ghost") || typeTwo.equalsIgnoreCase("Ghost")) {
+            throw new IllegalArgumentException("Pokemon was either Ghost type or legendary status, it's not processed");
         }
 
         return new Pokemon(id, name, typeOne, typeTwo, total, hp, attack, defense, spAttack, spDefense, speed, generation, isLegendary);

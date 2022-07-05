@@ -5,7 +5,7 @@ public class PokemonEntity {
     private final String firstType;
     private final String secondType;
     private final int total;
-    private final int hp;
+    private final double hp;
     private final double attack;
     private final double defense;
     private final double spAttack;
@@ -14,7 +14,7 @@ public class PokemonEntity {
     private final double generation;
     private final boolean isLegendary;
 
-    public PokemonEntity(String name, String firstType, String secondType, int total, int hp, double attack, double defense, double spAttack, double spDefense, double speed, double generation, boolean isLegendary) {
+    public PokemonEntity(String name, String firstType, String secondType, int total, double hp, double attack, double defense, double spAttack, double spDefense, double speed, double generation, boolean isLegendary) {
         this.name = name;
         this.firstType = firstType;
         this.secondType = secondType;
@@ -45,7 +45,7 @@ public class PokemonEntity {
         return total;
     }
 
-    public int getHp() {
+    public double getHp() {
         return hp;
     }
 

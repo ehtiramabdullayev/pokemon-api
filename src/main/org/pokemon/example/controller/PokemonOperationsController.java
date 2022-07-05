@@ -38,7 +38,7 @@ public class PokemonOperationsController {
         logger.info("init - Started.");
 
         pokemonReaderService.pokemons()
-                .forEach(pokemonProcessingService::processPokemon);
+                .forEach(pokemonProcessingService::processAndStorePokemon);
 
         logger.info("init - Done.");
     }

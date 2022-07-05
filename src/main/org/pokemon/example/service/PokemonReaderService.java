@@ -22,10 +22,8 @@ public class PokemonReaderService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final PokemonParser pokemonParser;
     private BufferedReader input;
-
     @Value("classpath:pokemon.csv")
     public Resource resourceFile;
-
 
     public PokemonReaderService(PokemonParser pokemonParser) {
         this.pokemonParser = pokemonParser;
