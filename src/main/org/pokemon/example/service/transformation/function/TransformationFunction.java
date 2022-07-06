@@ -5,8 +5,6 @@ package org.pokemon.example.service.transformation.function;
  * @param <T>
  */
 public interface TransformationFunction<T> {
-
-    boolean couldApply(T obj);
-
+    boolean couldBeApplied(T obj);
     T apply(T obj);
 }

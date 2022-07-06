@@ -13,3 +13,5 @@ transformation:
     value: 5
     excluded_letter: G
     starts_with: G
+
+pokemon_csv_file_path: classpath:pokemon.csv

@@ -3,7 +3,6 @@ package org.pokemon.example.service.transformation.function;
 import org.pokemon.example.dto.Pokemon;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.function.UnaryOperator;
 
@@ -22,7 +21,7 @@ public class AttackTransformationFunction implements TransformationFunction<Poke
     };
 
     @Override
-    public boolean couldApply(Pokemon pokemon) {
+    public boolean couldBeApplied(Pokemon pokemon) {
         return types.stream().anyMatch(pokemon::isTypeOf);
     }
 
@@ -30,5 +29,4 @@ public class AttackTransformationFunction implements TransformationFunction<Poke
     public Pokemon apply(Pokemon pokemon) {
         return unaryOperator.apply(pokemon);
     }
-
 }

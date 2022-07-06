@@ -3,7 +3,6 @@ package org.pokemon.example.repo.impl;
 import org.pokemon.example.model.PokemonEntity;
 import org.pokemon.example.repo.PokemonRepo;
 import org.springframework.stereotype.Repository;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
