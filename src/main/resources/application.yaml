@@ -1,5 +1,5 @@
 transformation:
-  health:
+  hp:
     value: 2.0
     types: Steel
   attack:

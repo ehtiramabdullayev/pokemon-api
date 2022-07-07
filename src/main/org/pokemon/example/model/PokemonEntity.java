@@ -14,7 +14,18 @@ public class PokemonEntity {
     private final double generation;
     private final boolean isLegendary;
 
-    public PokemonEntity(String name, String firstType, String secondType, int total, double hp, double attack, double defense, double spAttack, double spDefense, double speed, double generation, boolean isLegendary) {
+    public PokemonEntity(final String name,
+                         final String firstType,
+                         final String secondType,
+                         final int total,
+                         final double hp,
+                         final double attack,
+                         final double defense,
+                         final double spAttack,
+                         final double spDefense,
+                         final double speed,
+                         final double generation,
+                         final boolean isLegendary) {
         this.name = name;
         this.firstType = firstType;
         this.secondType = secondType;

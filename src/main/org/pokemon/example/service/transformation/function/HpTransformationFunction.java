@@ -9,10 +9,10 @@ import java.util.function.UnaryOperator;
 @Component
 public class HpTransformationFunction implements TransformationFunction<Pokemon> {
 
-    @Value("${transformation.health.value}")
+    @Value("${transformation.hp.value}")
     private Double changeValue;
 
-    @Value("#{'${transformation.health.types}'.split(',')}")
+    @Value("#{'${transformation.hp.types}'.split(',')}")
     private List<String> types;
 
     private final UnaryOperator<Pokemon> unaryOperator = pokemon -> {
