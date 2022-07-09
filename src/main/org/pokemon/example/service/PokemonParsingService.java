@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PokemonParserService {
+public class PokemonParsingService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public Pokemon parsePokemonData(String line) {

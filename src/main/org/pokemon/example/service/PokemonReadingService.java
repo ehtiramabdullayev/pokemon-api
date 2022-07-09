@@ -16,15 +16,15 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 @Service
-public class PokemonReaderService {
+public class PokemonReadingService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    private final PokemonParserService pokemonParserService;
+    private final PokemonParsingService pokemonParsingService;
     private BufferedReader input;
     @Value("${pokemon_csv_file_path}")
     public Resource resourceFile;
 
-    public PokemonReaderService(PokemonParserService pokemonParserService) {
-        this.pokemonParserService = pokemonParserService;
+    public PokemonReadingService(PokemonParsingService pokemonParsingService) {
+        this.pokemonParsingService = pokemonParsingService;
     }
 
     @PostConstruct
@@ -46,7 +46,7 @@ public class PokemonReaderService {
     public Stream<Pokemon> readPokemons() {
         return input.lines()
                 .filter(line -> !line.isBlank())
-                .map(pokemonParserService::parsePokemonData)
+                .map(pokemonParsingService::parsePokemonData)
                 .filter(Objects::nonNull);
     }
 }

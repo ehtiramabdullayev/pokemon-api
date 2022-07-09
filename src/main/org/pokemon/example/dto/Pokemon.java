@@ -3,19 +3,19 @@ package org.pokemon.example.dto;
 import java.util.Objects;
 
 public class Pokemon {
-    private int id;
-    private String name;
-    private String firstType;
-    private String secondType;
-    private int total;
+    private final int id;
+    private final String name;
+    private final String firstType;
+    private final String secondType;
+    private final int total;
     private double hp;
     private double attack;
     private double defense;
-    private double spAttack;
-    private double spDefense;
+    private final double spAttack;
+    private final double spDefense;
     private double speed;
-    private double generation;
-    private boolean isLegendary;
+    private final double generation;
+    private final boolean isLegendary;
 
     public Pokemon(final int id,
                    final String name,
@@ -49,40 +49,20 @@ public class Pokemon {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getFirstType() {
         return firstType;
     }
 
-    public void setFirstType(String firstType) {
-        this.firstType = firstType;
-    }
-
     public String getSecondType() {
         return secondType;
     }
 
-    public void setSecondType(String secondType) {
-        this.secondType = secondType;
-    }
-
     public int getTotal() {
         return total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
     }
 
     public double getHp() {
@@ -113,16 +93,8 @@ public class Pokemon {
         return spAttack;
     }
 
-    public void setSpAttack(double spAttack) {
-        this.spAttack = spAttack;
-    }
-
     public double getSpDefense() {
         return spDefense;
-    }
-
-    public void setSpDefense(double spDefense) {
-        this.spDefense = spDefense;
     }
 
     public double getSpeed() {
@@ -137,16 +109,8 @@ public class Pokemon {
         return generation;
     }
 
-    public void setGeneration(double generation) {
-        this.generation = generation;
-    }
-
     public boolean isLegendary() {
         return isLegendary;
-    }
-
-    public void setLegendary(boolean legendary) {
-        isLegendary = legendary;
     }
 
     @Override

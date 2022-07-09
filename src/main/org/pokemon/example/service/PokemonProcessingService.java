@@ -16,7 +16,7 @@ public class PokemonProcessingService {
     }
 
     public Pokemon processPokemon(Pokemon pokemon) {
-        logger.info("Processing and storing the pokemon {}", pokemon);
+        logger.info("Processing the pokemon {}", pokemon);
         return pokemonTransformingService.transform(pokemon);
     }
 }

@@ -25,9 +25,9 @@ public class PokemonService {
         return new GenericResponse<>(Collections.unmodifiableList(allPokemonList));
     }
 
-    public boolean storePokemon(Pokemon pokemon) {
+    public void storePokemon(Pokemon pokemon) {
         logger.info("Storing the pokemon {} to our DB ", pokemon);
-        return pokemonRepo.savePokemon(String.valueOf(pokemon.getId()),
+        pokemonRepo.savePokemon(String.valueOf(pokemon.getId()),
                 new PokemonEntity(pokemon.getName(),
                         pokemon.getFirstType(),
                         pokemon.getSecondType(),

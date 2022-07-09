@@ -7,29 +7,29 @@ import org.pokemon.example.dto.Pokemon;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-class PokemonParserServiceTest {
+class PokemonParsingServiceTest {
 
-    private PokemonParserService pokemonParserService;
+    private PokemonParsingService pokemonParsingService;
 
     @BeforeEach
     public void beforeEach() {
-        pokemonParserService = new PokemonParserService();
+        pokemonParsingService = new PokemonParsingService();
     }
 
     @AfterEach
     public void executedAfterEach() {
-        pokemonParserService = null;
+        pokemonParsingService = null;
     }
 
     @Test
     public void testWhenLineIsInvalidReturnsEmptyOptional() {
-        Pokemon pokemon = pokemonParserService.parsePokemonData("");
+        Pokemon pokemon = pokemonParsingService.parsePokemonData("");
         assertNull(pokemon);
     }
 
     @Test
     public void testWhenLineIsValidReturnsOptionalPokemon() {
-        Pokemon pokemon = pokemonParserService.parsePokemonData("1,Bulbasaur,Grass,Poison,318,45,49,49,65,65,45,1,False");
+        Pokemon pokemon = pokemonParsingService.parsePokemonData("1,Bulbasaur,Grass,Poison,318,45,49,49,65,65,45,1,False");
         assertEquals("Bulbasaur", pokemon.getName());
         assertEquals("Grass", pokemon.getFirstType());
         assertEquals("Poison", pokemon.getSecondType());
@@ -37,13 +37,13 @@ class PokemonParserServiceTest {
 
     @Test
     public void testWhenValidateLineWhenMoreThan13Arguments() {
-        Pokemon pokemon = pokemonParserService.parsePokemonData("1,Bulbasaur,Grass,Poison,318,45,49,49,65,65,45,1,False,14THvalue");
+        Pokemon pokemon = pokemonParsingService.parsePokemonData("1,Bulbasaur,Grass,Poison,318,45,49,49,65,65,45,1,False,14THvalue");
         assertNull(pokemon);
     }
 
     @Test
     public void testWhenValidatePokemonLineWhenIdIsZeroAndNameIsEmpty() {
-        Pokemon pokemon = pokemonParserService.parsePokemonData("0,,Grass,Poison,318,45,49,49,65,65,45,1,False");
+        Pokemon pokemon = pokemonParsingService.parsePokemonData("0,,Grass,Poison,318,45,49,49,65,65,45,1,False");
         assertNull(pokemon);
     }
 }

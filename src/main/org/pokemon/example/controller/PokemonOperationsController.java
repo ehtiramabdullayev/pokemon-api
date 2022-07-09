@@ -3,7 +3,7 @@ package org.pokemon.example.controller;
 import org.pokemon.example.api.model.response.GenericResponse;
 import org.pokemon.example.model.PokemonEntity;
 import org.pokemon.example.service.PokemonProcessingService;
-import org.pokemon.example.service.PokemonReaderService;
+import org.pokemon.example.service.PokemonReadingService;
 import org.pokemon.example.service.PokemonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,22 +19,22 @@ import java.util.List;
 public class PokemonOperationsController {
     private final Logger logger = LoggerFactory.getLogger(PokemonOperationsController.class);
     private final PokemonService pokemonService;
-    private final PokemonReaderService pokemonReaderService;
+    private final PokemonReadingService pokemonReadingService;
     private final PokemonProcessingService pokemonProcessingService;
 
     @Autowired
     public PokemonOperationsController(PokemonService pokemonService,
-                                       PokemonReaderService pokemonReaderService,
+                                       PokemonReadingService pokemonReadingService,
                                        PokemonProcessingService pokemonProcessingService) {
         this.pokemonService = pokemonService;
-        this.pokemonReaderService = pokemonReaderService;
+        this.pokemonReadingService = pokemonReadingService;
         this.pokemonProcessingService = pokemonProcessingService;
     }
 
     @PostConstruct
     public void init() {
         logger.info("init - Started.");
-        pokemonReaderService
+        pokemonReadingService
                 .readPokemons()
                 .map(pokemonProcessingService::processPokemon)
                 .forEach(pokemonService::storePokemon);
