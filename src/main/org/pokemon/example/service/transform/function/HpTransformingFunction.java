@@ -1,4 +1,4 @@
-package org.pokemon.example.service.transformation.function;
+package org.pokemon.example.service.transform.function;
 
 import org.pokemon.example.dto.Pokemon;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.function.UnaryOperator;
 
 @Component
-public class HpTransformationFunction implements TransformationFunction<Pokemon> {
+public class HpTransformingFunction implements TransformingFunction<Pokemon> {
 
-    @Value("${transformation.hp.value}")
+    @Value("${transforming.hp.value}")
     private Double changeValue;
 
-    @Value("#{'${transformation.hp.types}'.split(',')}")
+    @Value("#{'${transforming.hp.types}'.split(',')}")
     private List<String> types;
 
     private final UnaryOperator<Pokemon> unaryOperator = pokemon -> {
@@ -28,5 +28,10 @@ public class HpTransformationFunction implements TransformationFunction<Pokemon>
     @Override
     public Pokemon apply(Pokemon pokemon) {
         return unaryOperator.apply(pokemon);
+    }
+
+    @Override
+    public String toString() {
+        return "HpTransformingFunction";
     }
 }

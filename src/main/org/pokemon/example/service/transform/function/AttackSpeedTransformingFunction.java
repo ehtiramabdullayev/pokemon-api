@@ -1,4 +1,4 @@
-package org.pokemon.example.service.transformation.function;
+package org.pokemon.example.service.transform.function;
 
 import org.pokemon.example.dto.Pokemon;
 import org.springframework.beans.factory.annotation.Value;
@@ -6,15 +6,15 @@ import org.springframework.stereotype.Component;
 import java.util.function.UnaryOperator;
 
 @Component
-public class AttackSpeedTransformationFunction implements TransformationFunction<Pokemon> {
+public class AttackSpeedTransformingFunction implements TransformingFunction<Pokemon> {
 
-    @Value("#{new Double('${transformation.attack_speed.value}')}")
+    @Value("#{new Double('${transforming.attack_speed.value}')}")
     private Double changeValue;
 
-    @Value("${transformation.attack_speed.first_type}")
+    @Value("${transforming.attack_speed.first_type}")
     private String firstType;
 
-    @Value("${transformation.attack_speed.second_type}")
+    @Value("${transforming.attack_speed.second_type}")
     private String secondType;
 
     private final UnaryOperator<Pokemon> unaryOperator = pokemon -> {
@@ -30,5 +30,10 @@ public class AttackSpeedTransformationFunction implements TransformationFunction
     @Override
     public Pokemon apply(Pokemon pokemon) {
         return unaryOperator.apply(pokemon);
+    }
+
+    @Override
+    public String toString() {
+        return "AttackSpeedTransformingFunction";
     }
 }

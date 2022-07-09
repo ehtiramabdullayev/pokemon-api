@@ -1,4 +1,4 @@
-package org.pokemon.example.service.transformation.function;
+package org.pokemon.example.service.transform.function;
 
 import org.pokemon.example.dto.Pokemon;
 import org.springframework.beans.factory.annotation.Value;
@@ -6,15 +6,15 @@ import org.springframework.stereotype.Component;
 import java.util.function.UnaryOperator;
 
 @Component
-public class DefenceTransformationFunction implements TransformationFunction<Pokemon> {
+public class DefenceTransformingFunction implements TransformingFunction<Pokemon> {
 
-    @Value("${transformation.defence.value}")
+    @Value("${transforming.defence.value}")
     private Double letterValue;
 
-    @Value("${transformation.defence.excluded_letter}")
+    @Value("${transforming.defence.excluded_letter}")
     private Character excludedLetter;
 
-    @Value("${transformation.defence.starts_with}")
+    @Value("${transforming.defence.starts_with}")
     private String startsWith;
 
     private final UnaryOperator<Pokemon> unaryOperator = pokemon -> {
@@ -34,5 +34,10 @@ public class DefenceTransformationFunction implements TransformationFunction<Pok
     @Override
     public Pokemon apply(Pokemon pokemon) {
         return unaryOperator.apply(pokemon);
+    }
+
+    @Override
+    public String toString() {
+        return "DefenceTransformingFunction";
     }
 }
