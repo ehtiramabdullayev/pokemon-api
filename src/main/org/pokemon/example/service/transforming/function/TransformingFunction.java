@@ -1,4 +1,4 @@
-package org.pokemon.example.service.transform.function;
+package org.pokemon.example.service.transforming.function;
 
 public interface TransformingFunction<T> {
     boolean couldBeApplied(T obj);

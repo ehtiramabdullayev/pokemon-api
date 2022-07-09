@@ -1,30 +1,28 @@
-package org.pokemon.example.service.transform.function;
+package org.pokemon.example.service.transforming.function;
 
 import org.pokemon.example.dto.Pokemon;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import java.util.List;
 import java.util.function.UnaryOperator;
 
 @Component
-public class AttackSpeedTransformingFunction implements TransformingFunction<Pokemon> {
+public class AttackTransformingFunction implements TransformingFunction<Pokemon> {
 
-    @Value("#{new Double('${transforming.attack_speed.value}')}")
+    @Value("${transforming.attack.value}")
     private Double changeValue;
 
-    @Value("${transforming.attack_speed.first_type}")
-    private String firstType;
-
-    @Value("${transforming.attack_speed.second_type}")
-    private String secondType;
+    @Value("#{'${transforming.attack.types}'.split(',')}")
+    private List<String> types;
 
     private final UnaryOperator<Pokemon> unaryOperator = pokemon -> {
-        pokemon.setSpeed(pokemon.getSpeed() * changeValue);
+        pokemon.setAttack(pokemon.getAttack() * changeValue);
         return pokemon;
     };
 
     @Override
     public boolean couldBeApplied(Pokemon pokemon) {
-        return pokemon.isTypeOf(firstType) && pokemon.isTypeOf(secondType);
+        return types.stream().anyMatch(pokemon::isTypeOf);
     }
 
     @Override
@@ -34,6 +32,6 @@ public class AttackSpeedTransformingFunction implements TransformingFunction<Pok
 
     @Override
     public String toString() {
-        return "AttackSpeedTransformingFunction";
+        return "AttackTransformingFunction";
     }
 }

@@ -34,8 +34,10 @@ public class PokemonOperationsController {
     @PostConstruct
     public void init() {
         logger.info("init - Started.");
-        pokemonReaderService.readPokemons()
-                .forEach(pokemonProcessingService::processAndStorePokemon);
+        pokemonReaderService
+                .readPokemons()
+                .map(pokemonProcessingService::processPokemon)
+                .forEach(pokemonService::storePokemon);
         logger.info("init - Done.");
     }
 

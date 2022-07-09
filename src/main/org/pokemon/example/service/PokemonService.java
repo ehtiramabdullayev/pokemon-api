@@ -1,6 +1,7 @@
 package org.pokemon.example.service;
 
 import org.pokemon.example.api.model.response.GenericResponse;
+import org.pokemon.example.dto.Pokemon;
 import org.pokemon.example.model.PokemonEntity;
 import org.pokemon.example.repo.PokemonRepo;
 import org.slf4j.Logger;
@@ -23,4 +24,22 @@ public class PokemonService {
         List<PokemonEntity> allPokemonList = pokemonRepo.getAllPokemonList();
         return new GenericResponse<>(Collections.unmodifiableList(allPokemonList));
     }
+
+    public boolean storePokemon(Pokemon pokemon) {
+        logger.info("Storing the pokemon {} to our DB ", pokemon);
+        return pokemonRepo.savePokemon(String.valueOf(pokemon.getId()),
+                new PokemonEntity(pokemon.getName(),
+                        pokemon.getFirstType(),
+                        pokemon.getSecondType(),
+                        pokemon.getTotal(),
+                        pokemon.getHp(),
+                        pokemon.getAttack(),
+                        pokemon.getDefense(),
+                        pokemon.getSpAttack(),
+                        pokemon.getSpDefense(),
+                        pokemon.getSpeed(),
+                        pokemon.getGeneration(),
+                        pokemon.isLegendary()));
+    }
+
 }
