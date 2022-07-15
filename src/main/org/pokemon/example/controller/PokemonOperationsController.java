@@ -8,6 +8,7 @@ import org.pokemon.example.service.PokemonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,5 +45,10 @@ public class PokemonOperationsController {
     @RequestMapping(method = RequestMethod.GET)
     public GenericResponse<List<PokemonEntity>> getPokemonList() {
         return pokemonService.pokemonList();
+    }
+
+    @RequestMapping(value = "/pokemonName/{name}", method = RequestMethod.GET)
+    public GenericResponse<PokemonEntity> getPokemonByName(@PathVariable String name) {
+        return pokemonService.getPokemonByName(name);
     }
 }

@@ -1,6 +1,7 @@
 package org.pokemon.example.service;
 
 import org.pokemon.example.api.model.response.GenericResponse;
+import org.pokemon.example.api.model.response.Response;
 import org.pokemon.example.dto.Pokemon;
 import org.pokemon.example.model.PokemonEntity;
 import org.pokemon.example.repo.PokemonRepo;
@@ -9,11 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PokemonService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final PokemonRepo pokemonRepo;
+
     public PokemonService(PokemonRepo pokemonRepo) {
         this.pokemonRepo = pokemonRepo;
     }
@@ -22,6 +25,19 @@ public class PokemonService {
         logger.info("Getting the pokemons list from the DB");
         List<PokemonEntity> allPokemonList = pokemonRepo.getAllPokemonList();
         return new GenericResponse<>(Collections.unmodifiableList(allPokemonList));
+    }
+
+    public GenericResponse<PokemonEntity> getPokemonByName(String name) {
+        logger.info("Getting the pokemons list from the DB by its name");
+        Optional<PokemonEntity> pokemonOptional = pokemonRepo.getAllPokemonByName(name);
+        GenericResponse<PokemonEntity> genericResponse = new GenericResponse<>(
+                new Response(200, "Could not find the pokemon entity")
+        );
+        if (pokemonOptional.isPresent()) {
+            PokemonEntity pokemonEntity = pokemonOptional.get();
+            genericResponse = new GenericResponse<>(pokemonEntity);
+        }
+        return genericResponse;
     }
 
     public void storePokemon(Pokemon pokemon) {

@@ -19,10 +19,6 @@ public class GenericResponse<T> {
         this.response = response;
     }
 
-    public T getT() {
-        return body;
-    }
-
     public Response getResponse() {
         return response;
     }
