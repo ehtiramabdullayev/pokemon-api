@@ -89,7 +89,7 @@ http://localhost:8080/pokemon
 
 Example Response
 
-````json
+```json
 {
      "body": [
         {
@@ -126,4 +126,37 @@ Example Response
         "message": "SUCCESS"
     }
 }
-````
+
+```
+---
+
+**GET** /pokemonName/{pokemonName} - get all the pokemon by its name
+
+Example Request
+```
+http://localhost:8080/pokemon/pokemonName/pikachu
+```
+Example Response
+
+```json
+{
+    "body": {
+        "name": "Pikachu",
+        "firstType": "Electric",
+        "secondType": "",
+        "total": 320,
+        "hp": 35,
+        "attack": 55,
+        "defense": 40,
+        "spAttack": 50,
+        "spDefense": 50,
+        "speed": 90,
+        "generation": 1,
+        "legendary": false
+    },
+    "response": {
+        "status": 200,
+        "message": "SUCCESS"
+    }
+}
+```
