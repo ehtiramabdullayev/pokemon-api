@@ -24,8 +24,9 @@ public class PokemonRepositoryImpl implements PokemonRepo {
     }
 
     @Override
-    public List<PokemonEntity> getAllPokemonList() {
-        return new LinkedList<>(pokemons.values());
+    public Optional<List<PokemonEntity>> getAllPokemonList() {
+        LinkedList<PokemonEntity> pokemonEntities = new LinkedList<>(pokemons.values());
+        return Optional.of(pokemonEntities);
     }
 
     @Override

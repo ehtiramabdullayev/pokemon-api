@@ -23,12 +23,14 @@ public class PokemonService {
 
     public GenericResponse<List<PokemonEntity>> pokemonList() {
         logger.info("Getting the pokemons list from the DB");
-        List<PokemonEntity> allPokemonList = pokemonRepo.getAllPokemonList();
-        return new GenericResponse<>(Collections.unmodifiableList(allPokemonList));
+        Optional<List<PokemonEntity>> allPokemonList = pokemonRepo.getAllPokemonList();
+        return allPokemonList
+                .map(pokemonEntities -> new GenericResponse<>(Collections.unmodifiableList(pokemonEntities)))
+                .orElseGet(() -> new GenericResponse<>(Collections.emptyList()));
     }
 
     public GenericResponse<PokemonEntity> getPokemonByName(String name) {
-        logger.info("Getting the pokemons list from the DB by its name");
+        logger.info("Getting the pokemon [{}] from the DB by its name", name);
         Optional<PokemonEntity> pokemonOptional = pokemonRepo.getAllPokemonByName(name);
         GenericResponse<PokemonEntity> genericResponse = new GenericResponse<>(
                 new Response(200, "Could not find the pokemon entity")
@@ -36,13 +38,13 @@ public class PokemonService {
         if (pokemonOptional.isPresent()) {
             PokemonEntity pokemonEntity = pokemonOptional.get();
             genericResponse = new GenericResponse<>(pokemonEntity);
-        }
+        } else logger.error("Pokemon [{}] doesn't exist the DB", name);
         return genericResponse;
     }
 
     public void storePokemon(Pokemon pokemon) {
-        logger.info("Storing the pokemon {} to our DB ", pokemon);
-        pokemonRepo.savePokemon(String.valueOf(pokemon.getId()),
+        logger.info("Storing the pokemon name [{}] to our DB ", pokemon.getName());
+        if (pokemonRepo.savePokemon(String.valueOf(pokemon.getId()),
                 new PokemonEntity(pokemon.getName(),
                         pokemon.getFirstType(),
                         pokemon.getSecondType(),
@@ -54,6 +56,7 @@ public class PokemonService {
                         pokemon.getSpDefense(),
                         pokemon.getSpeed(),
                         pokemon.getGeneration(),
-                        pokemon.isLegendary()));
+                        pokemon.isLegendary()))) logger.info("Pokemon [{}] stored to the DB ", pokemon);
+        else logger.error("Failed to store pokemon [{}] to the DB", pokemon);
     }
 }
