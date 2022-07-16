@@ -13,6 +13,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
@@ -47,7 +48,8 @@ public class PokemonReadingService {
         return input.lines()
                 .filter(line -> !line.isBlank())
                 .map(pokemonParsingService::parsePokemonData)
-                .filter(Objects::nonNull);
+                .filter(Optional::isPresent)
+                .flatMap(Optional::stream);
     }
 }
 

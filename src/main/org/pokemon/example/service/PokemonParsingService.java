@@ -1,5 +1,6 @@
 package org.pokemon.example.service;
 
+import java.util.Optional;
 import org.pokemon.example.dto.Pokemon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,12 +10,12 @@ import org.springframework.stereotype.Service;
 public class PokemonParsingService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public Pokemon parsePokemonData(String line) {
+    public Optional<Pokemon> parsePokemonData(String line) {
         try {
-            return validatePokemon(line);
+            return Optional.of(validatePokemon(line));
         } catch (Exception e) {
             logger.error("Parsing failed to parse line {}", e.getMessage());
-            return null;
+            return Optional.empty();
         }
     }
 
