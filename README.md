@@ -74,7 +74,7 @@ Run the tests
 Run the project
 
   ```
-  java -jar simple-pokemon-api-1.0-SNAPSHOT.jar
+  $ java -jar simple-pokemon-api-1.0-SNAPSHOT.jar
   ```
 
 ## API
