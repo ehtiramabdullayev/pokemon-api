@@ -31,10 +31,10 @@ public class PokemonService {
 
     public GenericResponse<PokemonEntity> getPokemonByName(String name) {
         logger.info("Getting the pokemon [{}] from the DB by its name", name);
-        Optional<PokemonEntity> pokemonOptional = pokemonRepo.getAllPokemonByName(name);
         GenericResponse<PokemonEntity> genericResponse = new GenericResponse<>(
                 new Response(200, "Could not find the pokemon entity")
         );
+        Optional<PokemonEntity> pokemonOptional = pokemonRepo.getAllPokemonByName(name);
         if (pokemonOptional.isPresent()) {
             PokemonEntity pokemonEntity = pokemonOptional.get();
             genericResponse = new GenericResponse<>(pokemonEntity);

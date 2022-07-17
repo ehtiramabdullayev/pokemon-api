@@ -11,27 +11,27 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class PokemonRepositoryImpl implements PokemonRepo {
-    private final Map<String, PokemonEntity> pokemons;
+    private final Map<String, PokemonEntity> pokemonEntityMap;
 
     public PokemonRepositoryImpl() {
-        this.pokemons = new ConcurrentHashMap<>();
+        this.pokemonEntityMap = new ConcurrentHashMap<>();
     }
 
     @Override
     public boolean savePokemon(String id, PokemonEntity entity) {
-        pokemons.put(id, entity);
+        pokemonEntityMap.put(id, entity);
         return true;
     }
 
     @Override
     public Optional<List<PokemonEntity>> getAllPokemonList() {
-        LinkedList<PokemonEntity> pokemonEntities = new LinkedList<>(pokemons.values());
+        LinkedList<PokemonEntity> pokemonEntities = new LinkedList<>(pokemonEntityMap.values());
         return Optional.of(pokemonEntities);
     }
 
     @Override
     public Optional<PokemonEntity> getAllPokemonByName(String name) {
-        return pokemons.values()
+        return pokemonEntityMap.values()
                 .stream()
                 .filter(pokemonEntity -> pokemonEntity.getName().equalsIgnoreCase(name))
                 .findFirst();

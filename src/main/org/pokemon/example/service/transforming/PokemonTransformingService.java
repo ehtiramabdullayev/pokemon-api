@@ -27,7 +27,6 @@ public class PokemonTransformingService implements TransformingService<Pokemon> 
 
                 logger.info("Transformation of new pokemon with value [{}] is completed! using {}", pokemon, transformingFunction);
             }
-            logger.info("Pokemon: [{}] finished transformation using {}!", pokemon, transformingFunction);
         }
         return pokemon;
     }
