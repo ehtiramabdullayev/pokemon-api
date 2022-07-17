@@ -19,8 +19,8 @@ public class PokemonRepositoryImpl implements PokemonRepo {
 
     @Override
     public boolean savePokemon(String id, PokemonEntity entity) {
-        pokemonEntityMap.put(id, entity);
-        return true;
+            pokemonEntityMap.putIfAbsent(id, entity);
+            return true;
     }
 
     @Override
