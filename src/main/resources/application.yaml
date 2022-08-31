@@ -15,3 +15,6 @@ transforming:
     starts_with: G
 
 pokemon_csv_file_path: classpath:pokemon.csv
+
+server:
+  port: 5051
