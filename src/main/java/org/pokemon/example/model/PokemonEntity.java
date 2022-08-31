@@ -1,20 +1,50 @@
 package org.pokemon.example.model;
 
-public class PokemonEntity {
-    private final String name;
-    private final String firstType;
-    private final String secondType;
-    private final int total;
-    private final double hp;
-    private final double attack;
-    private final double defense;
-    private final double spAttack;
-    private final double spDefense;
-    private final double speed;
-    private final double generation;
-    private final boolean isLegendary;
 
-    public PokemonEntity(final String name,
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@DynamicUpdate
+@Table(name = "pokemons")
+public class PokemonEntity {
+    @Id
+    private String id;
+
+    @Column
+    private String name;
+    @Column
+    private String firstType;
+    @Column
+    private String secondType;
+    @Column
+    private int total;
+    @Column
+    private double hp;
+    @Column
+    private double attack;
+    @Column
+    private double defense;
+    @Column
+    private double spAttack;
+    @Column
+    private double spDefense;
+    @Column
+    private double speed;
+    @Column
+    private double generation;
+    @Column
+    private boolean isLegendary;
+
+    public PokemonEntity() {
+    }
+
+    public PokemonEntity(final String id,
+                         final String name,
                          final String firstType,
                          final String secondType,
                          final int total,
@@ -26,6 +56,7 @@ public class PokemonEntity {
                          final double speed,
                          final double generation,
                          final boolean isLegendary) {
+        this.id = id;
         this.name = name;
         this.firstType = firstType;
         this.secondType = secondType;
