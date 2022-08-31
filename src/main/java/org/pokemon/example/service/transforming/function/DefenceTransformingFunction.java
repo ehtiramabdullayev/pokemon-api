@@ -22,7 +22,7 @@ public class DefenceTransformingFunction implements TransformingFunction<Pokemon
                 .replace(excludedLetter + "", "")
                 .replace(" ", "")
                 .length();
-        pokemon.setDefense(pokemon.getDefense() + lettersCount * letterValue);
+        pokemon.setDefense(pokemon.getDefense() + Math.round(lettersCount * letterValue));
         return pokemon;
     };
 

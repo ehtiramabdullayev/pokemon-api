@@ -18,7 +18,7 @@ public class AttackSpeedTransformingFunction implements TransformingFunction<Pok
     private String secondType;
 
     private final UnaryOperator<Pokemon> unaryOperator = pokemon -> {
-        pokemon.setSpeed(pokemon.getSpeed() * changeValue);
+        pokemon.setSpeed(Math.round(pokemon.getSpeed() * changeValue));
         return pokemon;
     };
 

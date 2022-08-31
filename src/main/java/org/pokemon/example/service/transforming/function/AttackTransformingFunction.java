@@ -16,7 +16,7 @@ public class AttackTransformingFunction implements TransformingFunction<Pokemon>
     private List<String> types;
 
     private final UnaryOperator<Pokemon> unaryOperator = pokemon -> {
-        pokemon.setAttack(pokemon.getAttack() * changeValue);
+        pokemon.setAttack(Math.round(pokemon.getAttack() * changeValue));
         return pokemon;
     };
 

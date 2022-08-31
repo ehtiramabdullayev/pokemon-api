@@ -16,7 +16,7 @@ public class HpTransformingFunction implements TransformingFunction<Pokemon> {
     private List<String> types;
 
     private final UnaryOperator<Pokemon> unaryOperator = pokemon -> {
-        pokemon.setHp(pokemon.getHp() * changeValue);
+        pokemon.setHp(Math.round(pokemon.getHp() * changeValue));
         return pokemon;
     };
 
