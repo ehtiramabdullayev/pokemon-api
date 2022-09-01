@@ -31,6 +31,7 @@ public class PokemonParsingService {
 
 
     private Predicate<Pokemon> exclude() {
+        //Exclude Legendary Pokémon and the Pokemon Type: Ghost based on criteria
         return pokemon -> {
             if (pokemon.getId() == 0 || pokemon.getName().isEmpty()) {
                 return true;
