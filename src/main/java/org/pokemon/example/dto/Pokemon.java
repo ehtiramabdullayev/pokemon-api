@@ -1,49 +1,48 @@
 package org.pokemon.example.dto;
 
+import com.opencsv.bean.CsvBindByName;
+
 import java.util.Objects;
 
 public class Pokemon {
-    private final int id;
-    private final String name;
-    private final String firstType;
-    private final String secondType;
-    private final int total;
-    private double hp;
-    private double attack;
-    private double defense;
-    private final double spAttack;
-    private final double spDefense;
-    private double speed;
-    private final double generation;
-    private final boolean isLegendary;
+    @CsvBindByName(column = "#")
+    private int id;
+    @CsvBindByName(column = "Name")
+    private String name;
 
-    public Pokemon(final int id,
-                   final String name,
-                   final String firstType,
-                   final String secondType,
-                   final int total,
-                   final double hp,
-                   final double attack,
-                   final double defense,
-                   final double spAttack,
-                   final double spDefense,
-                   final double speed,
-                   final double generation,
-                   final boolean isLegendary) {
-        this.id = id;
-        this.name = name;
-        this.firstType = firstType;
-        this.secondType = secondType;
-        this.total = total;
-        this.hp = hp;
-        this.attack = attack;
-        this.defense = defense;
-        this.spAttack = spAttack;
-        this.spDefense = spDefense;
-        this.speed = speed;
-        this.generation = generation;
-        this.isLegendary = isLegendary;
-    }
+    @CsvBindByName(column = "Type 1")
+    private String firstType;
+
+    @CsvBindByName(column = "Type 2")
+    private String secondType;
+
+    @CsvBindByName(column = "Total")
+    private int total;
+
+    @CsvBindByName(column = "HP")
+    private double hp;
+
+    @CsvBindByName(column = "Attack")
+    private double attack;
+
+    @CsvBindByName(column = "Defense")
+    private double defense;
+
+    @CsvBindByName(column = "Sp. Atk")
+    private double spAttack;
+
+    @CsvBindByName(column = "Sp. Def")
+    private double spDefense;
+
+    @CsvBindByName(column = "Speed")
+    private double speed;
+
+    @CsvBindByName(column = "Generation")
+    private double generation;
+
+    @CsvBindByName(column = "Legendary")
+    private boolean isLegendary;
+
 
     public int getId() {
         return id;

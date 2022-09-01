@@ -36,7 +36,8 @@ public class PokemonOperationsController {
     public void init() {
         logger.info("init - Started.");
         pokemonReadingService
-                .readPokemons()
+                .getPokemonList()
+                .stream()
                 .map(pokemonProcessingService::processPokemon)
                 .forEach(pokemonService::storePokemon);
         logger.info("init - Done.");
