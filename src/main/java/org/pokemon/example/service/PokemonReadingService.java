@@ -27,12 +27,14 @@ public class PokemonReadingService {
 
     @PostConstruct
     public void init() {
+        logger.info("Initializing the parsing of the csv file");
         try (FileReader fileReader = new FileReader(resourceFile.getFile(), StandardCharsets.UTF_8)) {
             pokemonList = pokemonParsingService.parsePokemonData(fileReader);
         } catch (IOException e) {
             logger.error("Error reading file", e);
             pokemonList = List.of();
         }
+        logger.info("Parsing of the csv file ended");
     }
 
 
