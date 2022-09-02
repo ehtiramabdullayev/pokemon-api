@@ -2,9 +2,9 @@ package org.pokemon.example.controller;
 
 import org.pokemon.example.api.model.response.GenericResponse;
 import org.pokemon.example.model.PokemonEntity;
-import org.pokemon.example.service.PokemonProcessingService;
 import org.pokemon.example.service.PokemonReadingService;
 import org.pokemon.example.service.PokemonService;
+import org.pokemon.example.service.transforming.PokemonTransformingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +21,15 @@ public class PokemonOperationsController {
     private final Logger logger = LoggerFactory.getLogger(PokemonOperationsController.class);
     private final PokemonService pokemonService;
     private final PokemonReadingService pokemonReadingService;
-    private final PokemonProcessingService pokemonProcessingService;
+    private final PokemonTransformingService pokemonTransformingService;
 
     @Autowired
     public PokemonOperationsController(PokemonService pokemonService,
                                        PokemonReadingService pokemonReadingService,
-                                       PokemonProcessingService pokemonProcessingService) {
+                                       PokemonTransformingService pokemonTransformingService) {
         this.pokemonService = pokemonService;
         this.pokemonReadingService = pokemonReadingService;
-        this.pokemonProcessingService = pokemonProcessingService;
+        this.pokemonTransformingService = pokemonTransformingService;
     }
 
     @PostConstruct
@@ -38,7 +38,7 @@ public class PokemonOperationsController {
         pokemonReadingService
                 .getPokemonList()
                 .stream()
-                .map(pokemonProcessingService::processPokemon)
+                .map(pokemonTransformingService::transform)
                 .forEach(pokemonService::storePokemon);
         logger.info("init - Done.");
     }
