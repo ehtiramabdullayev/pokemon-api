@@ -7,6 +7,8 @@ import org.pokemon.example.model.PokemonEntity;
 import org.pokemon.example.repo.PokemonRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -14,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@CacheConfig(cacheNames = {"pokemons"})
 public class PokemonService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final PokemonRepo pokemonRepo;
@@ -22,6 +25,8 @@ public class PokemonService {
         this.pokemonRepo = pokemonRepo;
     }
 
+
+    @Cacheable // caches the result of findAll() method
     public GenericResponse<List<PokemonEntity>> pokemonList() {
         logger.info("Getting the pokemons list from the DB");
         Optional<List<PokemonEntity>> allPokemonList = Optional.of(pokemonRepo.findAll());
@@ -30,6 +35,7 @@ public class PokemonService {
                 .orElseGet(() -> new GenericResponse<>(Collections.emptyList()));
     }
 
+    @Cacheable
     public GenericResponse<PokemonEntity> getPokemonByName(String name) {
         logger.info("Getting the pokemon [{}] from the DB by its name", name);
         GenericResponse<PokemonEntity> genericResponse = new GenericResponse<>(
