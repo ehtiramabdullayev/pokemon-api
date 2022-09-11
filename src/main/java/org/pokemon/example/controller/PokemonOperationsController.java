@@ -53,7 +53,7 @@ public class PokemonOperationsController {
         return pokemonService.getPokemonByName(name);
     }
 
-    @RequestMapping(value = "/pokemonName/filer", method = RequestMethod.POST)
+    @RequestMapping(value = "/pokemonName/filter", method = RequestMethod.POST)
     public GenericResponse<PokemonEntity> filterPokemonByProperties(@PathVariable String name) {
         return pokemonService.getPokemonByName(name);
     }
