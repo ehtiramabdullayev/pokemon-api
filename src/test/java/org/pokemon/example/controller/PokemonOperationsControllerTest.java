@@ -10,6 +10,6 @@ class PokemonOperationsControllerTest {
     }
 
     @Test
-    public void testTheListPokemonsSuccess() throws IOException, InterruptedException {
+    public void testTheListPokemonsSuccess() {
     }
 }

@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/v1/pokemon")
+@RequestMapping(value = "api/v1/pokemons")
 public class PokemonOperationsController {
     private final Logger logger = LoggerFactory.getLogger(PokemonOperationsController.class);
     private final PokemonService pokemonService;
