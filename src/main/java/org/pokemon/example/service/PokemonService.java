@@ -9,6 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -47,6 +50,18 @@ public class PokemonService {
             genericResponse = new GenericResponse<>(pokemonEntity);
         } else logger.error("Pokemon [{}] doesn't exist the DB", name);
         return genericResponse;
+    }
+
+    public GenericResponse<List<PokemonEntity>> getPokemonByFilters(Specification<PokemonEntity> spec, Pageable page) {
+        logger.info("Getting the pokemon [{}] from the DB by given criteria", spec);
+        Page<PokemonEntity> filteredPokemons = pokemonRepo.findAll(spec, page);
+
+        Optional<List<PokemonEntity>> allPokemonList = Optional.of(filteredPokemons.getContent());
+
+        return allPokemonList
+                .map(pokemonEntities -> new GenericResponse<>(Collections.unmodifiableList(pokemonEntities)))
+                .orElseGet(() -> new GenericResponse<>(Collections.emptyList()));
+
     }
 
     public void storePokemon(Pokemon pokemon) {

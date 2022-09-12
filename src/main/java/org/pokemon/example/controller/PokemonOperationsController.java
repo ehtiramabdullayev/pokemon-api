@@ -1,5 +1,9 @@
 package org.pokemon.example.controller;
 
+import net.kaczmarzyk.spring.data.jpa.domain.GreaterThanOrEqual;
+import net.kaczmarzyk.spring.data.jpa.domain.LessThanOrEqual;
+import net.kaczmarzyk.spring.data.jpa.web.annotation.And;
+import net.kaczmarzyk.spring.data.jpa.web.annotation.Spec;
 import org.pokemon.example.api.model.response.GenericResponse;
 import org.pokemon.example.model.PokemonEntity;
 import org.pokemon.example.service.PokemonReadingService;
@@ -8,10 +12,13 @@ import org.pokemon.example.service.transforming.PokemonTransformingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import javax.annotation.PostConstruct;
 import java.util.List;
 
@@ -53,8 +60,15 @@ public class PokemonOperationsController {
         return pokemonService.getPokemonByName(name);
     }
 
-    @RequestMapping(value = "/pokemonName/filter", method = RequestMethod.POST)
-    public GenericResponse<PokemonEntity> filterPokemonByProperties(@PathVariable String name) {
-        return pokemonService.getPokemonByName(name);
+    @RequestMapping(value = "pokemon", method = RequestMethod.GET)
+    public GenericResponse<List<PokemonEntity>> filterPokemonByProperties(@And({
+            @Spec(path = "hp", params = "hp[gte]", spec = GreaterThanOrEqual.class),
+            @Spec(path = "hp", params = "hp[lte]", spec = LessThanOrEqual.class),
+            @Spec(path = "attack", params = "attack[gte]", spec = GreaterThanOrEqual.class),
+            @Spec(path = "attack", params = "attack[lte]", spec = LessThanOrEqual.class),
+            @Spec(path = "defense", params = "defense[gte]", spec = GreaterThanOrEqual.class),
+            @Spec(path = "defense", params = "defense[lte]", spec = LessThanOrEqual.class)
+    }) Specification<PokemonEntity> spec, Pageable page) {
+        return pokemonService.getPokemonByFilters(spec, page);
     }
 }
