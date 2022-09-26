@@ -52,13 +52,14 @@ public class PokemonService {
         return genericResponse;
     }
 
+    @Cacheable
     public GenericResponse<List<PokemonEntity>> getPokemonByFilters(Specification<PokemonEntity> spec, Pageable page) {
         logger.info("Getting the pokemon [{}] from the DB by given criteria", spec);
         Page<PokemonEntity> filteredPokemons = pokemonRepo.findAll(spec, page);
 
-        Optional<List<PokemonEntity>> allPokemonList = Optional.of(filteredPokemons.getContent());
+        Optional<List<PokemonEntity>> filteredPokemonList = Optional.of(filteredPokemons.getContent());
 
-        return allPokemonList
+        return filteredPokemonList
                 .map(pokemonEntities -> new GenericResponse<>(Collections.unmodifiableList(pokemonEntities)))
                 .orElseGet(() -> new GenericResponse<>(Collections.emptyList()));
 
@@ -66,7 +67,12 @@ public class PokemonService {
 
     public void storePokemon(Pokemon pokemon) {
         logger.info("Storing the pokemon name [{}] to our DB ", pokemon.getName());
-        pokemonRepo.save(new PokemonEntity(
+        pokemonRepo.save(convertFromDtoToEntity(pokemon));
+        logger.info("Pokemon [{}] stored to the DB ", pokemon);
+    }
+
+    private PokemonEntity convertFromDtoToEntity(Pokemon pokemon) {
+        return new PokemonEntity(
                 String.valueOf(pokemon.getId()),
                 pokemon.getName(),
                 pokemon.getFirstType(),
@@ -79,7 +85,6 @@ public class PokemonService {
                 pokemon.getSpDefense(),
                 pokemon.getSpeed(),
                 pokemon.getGeneration(),
-                pokemon.isLegendary()));
-        logger.info("Pokemon [{}] stored to the DB ", pokemon);
+                pokemon.isLegendary());
     }
 }

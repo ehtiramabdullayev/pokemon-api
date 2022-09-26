@@ -14,7 +14,6 @@ import javax.persistence.Table;
 public class PokemonEntity {
     @Id
     private String id;
-
     @Column
     private String name;
     @Column
