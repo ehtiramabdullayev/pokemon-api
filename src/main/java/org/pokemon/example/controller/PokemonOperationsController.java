@@ -1,5 +1,6 @@
 package org.pokemon.example.controller;
 
+import net.kaczmarzyk.spring.data.jpa.domain.Equal;
 import net.kaczmarzyk.spring.data.jpa.domain.GreaterThanOrEqual;
 import net.kaczmarzyk.spring.data.jpa.domain.LessThanOrEqual;
 import net.kaczmarzyk.spring.data.jpa.web.annotation.And;
@@ -66,7 +67,9 @@ public class PokemonOperationsController {
             @Spec(path = "attack", params = "attack[gte]", spec = GreaterThanOrEqual.class),
             @Spec(path = "attack", params = "attack[lte]", spec = LessThanOrEqual.class),
             @Spec(path = "defense", params = "defense[gte]", spec = GreaterThanOrEqual.class),
-            @Spec(path = "defense", params = "defense[lte]", spec = LessThanOrEqual.class)
+            @Spec(path = "defense", params = "defense[lte]", spec = LessThanOrEqual.class),
+            @Spec(path = "firstType", params = "firstType", spec = Equal.class),
+            @Spec(path = "name", params = "name", spec = Equal.class)
     }) Specification<PokemonEntity> spec, Pageable page) {
         logger.info("Filtering pokemon entities by the given filters");
         return pokemonService.getPokemonByFilters(spec, page);
