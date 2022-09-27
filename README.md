@@ -80,11 +80,11 @@ Run the project
 ## API
 
 ---
-**GET** /pokemon -  get all the pokemons from the db
+**GET** /pokemons -  get all the pokemons from the db
 
 Example Request
 ```
-http://localhost:8080/pokemon
+http://localhost:5051/api/v1/pokemons
 ```
 
 Example Response
@@ -134,7 +134,7 @@ Example Response
 
 Example Request
 ```
-http://localhost:8080/pokemon/pokemonName/pikachu
+http://localhost:5051/api/v1/pokemons/pokemonName/Pikachu
 ```
 Example Response
 
@@ -158,5 +158,54 @@ Example Response
         "status": 200,
         "message": "SUCCESS"
     }
+}
+```
+
+---
+
+**GET** /pokemon?hp[gte]=num&defense[gte]=num&attack[gte]=num - get filtered pokemons based on the filters
+
+Example Request
+```
+http://localhost:5051/api/v1/pokemons/pokemon?hp[gte]=150&defense[gte]=150&attack[gte]=125
+```
+Example Response
+
+```json
+{
+  "body": [
+    {
+      "name": "SteelixMega Steelix",
+      "firstType": "Steel",
+      "secondType": "Ground",
+      "total": 610,
+      "hp": 150,
+      "attack": 125,
+      "defense": 230,
+      "spAttack": 55,
+      "spDefense": 95,
+      "speed": 30,
+      "generation": 2,
+      "legendary": false
+    },
+    {
+      "name": "MetagrossMega Metagross",
+      "firstType": "Steel",
+      "secondType": "Psychic",
+      "total": 700,
+      "hp": 160,
+      "attack": 145,
+      "defense": 150,
+      "spAttack": 105,
+      "spDefense": 110,
+      "speed": 110,
+      "generation": 3,
+      "legendary": false
+    }
+  ],
+  "response": {
+    "status": 200,
+    "message": "SUCCESS"
+  }
 }
 ```
